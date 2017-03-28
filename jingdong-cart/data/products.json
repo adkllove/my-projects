@@ -1,0 +1,7 @@
+[
+  {"name":"华为","price":1999,"os":"android","quantity":2,"date":"2016-05-03","imgsrc":"phone01.jpg","desc":"华为 HUAWEI nova 4GB+64GB版 玫瑰金 移动联通电信4G手机 双卡双待"},
+  {"name":"小米","price":1799,"os":"android","quantity":2,"date":"2016-05-03","imgsrc":"phone02.jpg","desc":"【定位套装】小米5s 全网通 高配版 3GB内存 64GB ROM 哑光金 移动联通"},
+  {"name":"一加3T","price":2699,"os":"android","quantity":2,"date":"2016-05-03","imgsrc":"phone03.jpg","desc":"一加手机3T (A3010) 6GB+64GB 枪灰版 全网通 双卡双待 移动联通电信"},
+  {"name":"三星","price":3599,"os":"android","quantity":2,"date":"2016-05-03","imgsrc":"phone04.jpg","desc":"三星 Galaxy Note5（N9200）4GB+32GB 铂光金 全网通4G手机"},
+  {"name":"中兴","price":999,"os":"android","quantity":2,"date":"2016-05-03","imgsrc":"phone05.jpg","desc":"中兴(ZTE) A2 Plus 4GB+32GB高配 流光金 全网通4G双卡双待"}
+]

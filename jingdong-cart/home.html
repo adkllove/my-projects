@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html ng-app="myapp">
+<head>
+    <meta charset="UTF-8">
+    <title>单页面应用程序</title>
+    <link rel="stylesheet" href="css/font-awesome.css"/>
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/home.css" rel="stylesheet">
+    <!--引入库文件-->
+    <script src="js/angular.js"></script>
+    <script src="js/angular-route.js"></script>
+    <!--引入主程序文件-->
+    <script src="js/app.js"></script>
+    <script src="js/home.js"></script>
+</head>
+<body >
+<div class="header">
+    <div class="top">
+        <div class="top_inner">
+            <div class="address">送至：北京<span>&or;</span></div>
+            <ul class="menu">
+                <li><a href="#" class="login">你好，请登录</a><a href="#" class="changecolor">免费注册</a></li>
+                <li class="line"></li>
+                <li><a href="#">我的订单</a></li>
+                <li class="line"></li>
+                <li class="bg"><a href="#">我的京东<span>&or;</span></a></li>
+                <li class="line"></li>
+                <li><a href="#">京东会员</a></li>
+                <li class="line"></li>
+                <li><a href="#">企业采购</a></li>
+                <li class="line"></li>
+                <li class="bg"><a href="#"><span class="mobile"></span>手机京东<span>&or;</span></a></li>
+                <li class="line"></li>
+                <li class="bg"><a href="#">关注京东<span>&or;</span></a></li>
+                <li class="line"></li>
+                <li class="bg"><a href="#">客户服务<span>&or;</span></a></li>
+                <li class="line"></li>
+                <li class="bg"><a href="#">网站导航<span>&or;</span></a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="mid clearfix">
+        <div class="logo">
+            <a href="index.html"><img src="images/logo-201305.png"></a>
+        </div>
+        <div class="search">
+            <form>
+                <input type="search" value="防辐射服" class="sea"><input type="submit" value="搜索" class="sub">
+            </form>
+            <div class="tags">
+                <a href="#" class="active">宝宝洗护</a>
+                <a href="#">铂金尿裤</a>
+                <a href="#">妈妈理财</a>
+                <a href="#">宝宝喂养</a>
+                <a href="#">京东宝宝</a>
+                <a href="#">安全座椅</a>
+            </div>
+        </div>
+        <div class="buy">
+            <a href="#/shopCart">我的购物车</a>
+            <i>></i>
+            <div class="number" ng-controller="cartCtrl">{{count()}}</div>
+        </div>
+    </div>
+    <div class="bot clearfix">
+        <div class="list">全部商品分类</div>
+        <ul>
+            <li><a href="#">首页</a></li>
+            <li><a href="#">服装城</a></li>
+            <li><a href="#">美妆馆</a></li>
+            <li><a href="#">京东超市</a></li>
+            <li><a href="#">生鲜</a></li>
+            <li><a href="#">全球购</a></li>
+            <li><a href="#">闪购</a></li>
+            <li><a href="#">团购</a></li>
+            <li><a href="#">拍卖</a></li>
+            <li><a href="#">金融</a></li>
+        </ul>
+    </div>
+</div>
+
+
+<div class="cart-info">
+    <ul class="clearfix">
+        <li ng-controller="cartCtrl">
+            <a href="#/shopCart"><i class="fa fa-shopping-cart"></i> 查看购物车-[{{count()}}个商品,总金额:{{money() | currency:"￥"}}元]</a>
+        </li>
+        <li><a href="#/productList"><i class="fa fa-home"></i> 浏览商品</a></li>
+    </ul>
+</div>
+
+<div id="main">
+    <div ng-view></div>
+</div>
+
+<div class="advertise2">
+    <ul class="clearfix">
+        <li class="no1"></li>
+        <li class="no2"></li>
+        <li class="no3"></li>
+        <li class="no4"></li>
+    </ul>
+</div>
+<div class="service clearfix">
+    <dl class="lists">
+        <dt>购物指南</dt>
+        <dd><a href="#">购物流程</a></dd>
+        <dd><a href="#">会员介绍</a></dd>
+        <dd><a href="#">生活旅行/团购</a></dd>
+        <dd><a href="#">常见问题</a></dd>
+        <dd><a href="#">大家电</a></dd>
+        <dd><a href="#">联系客服</a></dd>
+    </dl>
+    <dl class="lists">
+        <dt>配送方式</dt>
+        <dd><a href="#">上门自提</a></dd>
+        <dd><a href="#">211限时达</a></dd>
+        <dd><a href="#">配送服务查询</a></dd>
+        <dd><a href="#">配送费收取标准</a></dd>
+        <dd><a href="#">海外配送</a></dd>
+    </dl>
+    <dl class="lists">
+        <dt>支付方式</dt>
+        <dd><a href="#">货到付款</a></dd>
+        <dd><a href="#">在线支付</a></dd>
+        <dd><a href="#">分期付款</a></dd>
+        <dd><a href="#">邮局汇款</a></dd>
+        <dd><a href="#">公司转账</a></dd>
+    </dl>
+    <dl class="lists">
+        <dt>售后服务</dt>
+        <dd><a href="#">售后政策</a></dd>
+        <dd><a href="#">价格保护</a></dd>
+        <dd><a href="#">退款说明</a></dd>
+        <dd><a href="#">返修/退换货</a></dd>
+        <dd><a href="#">取消订单</a></dd>
+    </dl>
+    <dl class="lists last">
+        <dt>特色服务</dt>
+        <dd><a href="#">夺宝岛</a></dd>
+        <dd><a href="#">DIY装机</a></dd>
+        <dd><a href="#">延保服务</a></dd>
+        <dd><a href="#">京东E卡</a></dd>
+        <dd><a href="#">京东通信</a></dd>
+        <dd><a href="#">京东JD+</a></dd>
+    </dl>
+    <div class="map">
+        <h4>京东自营覆盖区县</h4>
+        <p>京东已向全国2654个区县提供自营配送服务，支持货到付款、POS机刷卡和售后上门服务。</p>
+        <a href="#">查看详情 &gt;</a>
+    </div>
+</div>
+<div class="footer">
+    <ul class="clearfix">
+        <li><a href="#">关于我们</a><span>|</span></li>
+        <li><a href="#">联系我们</a><span>|</span></li>
+        <li><a href="#">联系客服</a><span>|</span></li>
+        <li><a href="#">商家入驻</a><span>|</span></li>
+        <li><a href="#">营销中心</a><span>|</span></li>
+        <li><a href="#">手机京东</a><span>|</span></li>
+        <li><a href="#">友情链接</a><span>|</span></li>
+        <li><a href="#">销售联盟</a><span>|</span></li>
+        <li><a href="#">京东社区</a><span>|</span></li>
+        <li><a href="#">风险监测</a><span>|</span></li>
+        <li><a href="#">京东公益</a><span>|</span></li>
+        <li><a href="#">English Site</a><span>|</span></li>
+        <li><a href="#">Contact Us</a></li>
+    </ul>
+    <p><span></span>京公网安备11000002000088号 | 京ICP证070359号 | 互联网药品信息服务资格证编号(京)-经营性-2014-0008  |  新出发京零 字第大120007号<br>互联网出版许可证编号新出网证(京)字150号  |  出版物经营许可证 | 网络文化经营许可证京网文[2014]2148-348号  |  违法和不良信息举报电话：4006561155<br>Copyright&copy;2004 - 2016  京东JD.com 版权所有  |  消费者维权热线：4006067733<br>京东旗下网站：京东钱包</p>
+    <div class="icon">
+        <a href="#"><img src="images/54b8871eNa9a7067e.png"></a>
+        <a href="#"><img src="images/54b8872dNe37a9860.png"></a>
+        <a href="#"><img src="images/54b8875fNad1e0c4c.png"></a>
+        <a href="#"><img src="images/54b8871eNa9a7067e.png"></a>
+        <a href="#"><img src="images/5698dc03N23f2e3b8.jpg"></a>
+        <a href="#" class="nomargin"><img src="images/5698dc16Nb2ab99df.jpg"></a>
+    </div>
+</div>
+
+</body>
+</html>

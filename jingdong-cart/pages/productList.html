@@ -1,0 +1,8 @@
+<!--商品列表显示子页面-->
+<ul class="productList clearfix">
+    <li ng-repeat="product in products">
+        <div><a href="#/detail?name={{product.name}}"><img ng-src="images/{{product.imgsrc}}"></a></div>
+        <p class="desc"><a href="#/detail?name={{product.name}}">{{product.desc}}</a></p>
+        <p class="txt">{{product.price | currency:"￥"}}</p>
+    </li>
+</ul>

@@ -1,0 +1,147 @@
+
+<div class="smallnav" data-ng-init="load()">
+    <div class="smallnav_inner">
+        <a href="#" class="bigfont">手机</a><span>&gt;</span>
+        <a href="#">手机通讯</a><span>&gt;</span>
+        <a href="#">手机</a><span>&gt;</span>
+        <a href="#">华为（HUAWEI）</a><span>&gt;</span>
+        <a href="#">华为nova</a>
+    </div>
+</div>
+
+<div class="information">
+    <div class="information_inner clearfix">
+        <div class="info_left">
+            <div class="bigpics">
+                <div class="bigpic" id="box1">
+                    <img ng-src="images/{{productImg[name1].normal[0]}}">
+                    <img class="hide" ng-src="images/{{productImg[name1].normal[1]}}">
+                    <img class="hide" ng-src="images/{{productImg[name1].normal[2]}}">
+                    <img class="hide" ng-src="images/{{productImg[name1].normal[3]}}">
+                    <img class="hide" ng-src="images/{{productImg[name1].normal[4]}}">
+                    <span></span>
+                </div>
+                <span id="box2">
+                    <img ng-src="images/{{productImg[name1].big[0]}}">
+                    <img class="hide" ng-src="images/{{productImg[name1].big[1]}}">
+                    <img class="hide" ng-src="images/{{productImg[name1].big[2]}}">
+                    <img class="hide" ng-src="images/{{productImg[name1].big[3]}}">
+                    <img class="hide" ng-src="images/{{productImg[name1].big[4]}}">
+                </span>
+            </div>
+
+            <div class="pic_list">
+                <a href="javascript:;" class="prebtn"></a>
+                <a href="javascript:;" class="nextbtn"></a>
+                <ul class="clearfix">
+                    <li class="no1"><img ng-src="images/{{productImg[name1].small[0]}}"></li>
+                    <li class="no2"><img ng-src="images/{{productImg[name1].small[1]}}"></li>
+                    <li class="no2"><img ng-src="images/{{productImg[name1].small[2]}}"></li>
+                    <li class="no2"><img ng-src="images/{{productImg[name1].small[3]}}"></li>
+                    <li class="no2"><img ng-src="images/{{productImg[name1].small[4]}}"></li>
+                </ul>
+            </div>
+            <div class="txt">
+                <span class="number">商品编号：695469</span>
+                <span class="attention"><i></i><a href="#">关注商品</a></span>
+                <span class="share"><i></i><a href="#">分享</a></span>
+            </div>
+        </div>
+        <div class="info_mid">
+            <div class="name">
+                <h3>{{product.desc}}</h3>
+                <p>4K高清视频拍摄！美颜自拍！DTS音效！张艺兴，关晓彤的选择！</p>
+            </div>
+            <div class="summary">
+                <div class="jd_price clearfix">
+                    <div class="price">京东价：<span>{{product.price | currency:"￥"}}</span>（降价通知）</div>
+                    <div class="comment_sum">
+                        <p class="comment">累计评价</p>
+                        <a href="#" class="num">1673709</a>
+                    </div>
+                </div>
+                <div class="address">配送至：
+                    <select>
+                        <option>北京朝阳区三环以内</option>
+                    </select>
+                    <span>有货，</span>
+                    支持 <a href="#">99元免运费</a> | <a href="#">货到付款</a>
+                </div>
+                <div class="service1">服务：由京东发货，并提供售后服务。15:00前完成下单,可预约今晚送达
+                </div>
+                <div class="choose clearfix">
+                    <span>选择颜色：</span>
+                    <ul class="choose_list clearfix" id="choose_list">
+                        <li class="changecolor"><a href="javascript:;">香槟金（白）</a><i></i></li>
+                        <li><a href="javascript:;">香槟金（黑）</a><i></i></li>
+                        <li><a href="javascript:;">玫瑰金（白）</a><i></i></li>
+                        <li><a href="javascript:;">玫瑰金（黑）</a><i></i></li>
+                        <li><a href="javascript:;">皓月银（白）</a><i></i></li>
+                        <li><a href="javascript:;">皓月银（黑）</a><i></i></li>
+                        <li><a href="javascript:;">曜石黑（白）</a><i></i></li>
+                        <li><a href="javascript:;">曜石黑（黑）</a><i></i></li>
+                        <li><a href="javascript:;">天空蓝（白）</a><i></i></li>
+                    </ul>
+                </div>
+                <div class="buy_count clearfix">
+                    <div class="buy_num">
+                        <input type="text" id="input1" ng-model="inval">
+                        <a href="javascript:;" class="plus" id="plus" ng-click="plus()">+</a>
+                        <a href="javascript:;" class="minus" id="minus" ng-click="minus()">-</a>
+                    </div>
+                    <div class="buy_btn" ng-click="add()"></div>
+                </div>
+                <div class="smalltip">
+                    温馨提示：
+                    <span>1.本商品不能使用 东券</span>
+                    <span>2.支持7天无理由退货</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="info_right">
+            <div class="r_logo">
+                <!--<a href="#"><img src="images/5541a10dNfb54713e.jpg"></a>-->
+                <a href="#"><img src="images/shop.png"></a>
+            </div>
+            <div class="shop">
+                <a href="#">华为京东自营旗舰店</a>
+                <span>京东自营</span>
+            </div>
+            <div class="contact">
+                <ul class="clearfix">
+                    <li><a href="#"><i class="num1"></i><span class="txt1">联系供应商</span></a></li>
+                    <li><a href="#"><i class="num2"></i><span class="txt2">咨询JIMI</span></a></li>
+                    <li><a href="#"><i class="num3"></i><span class="txt3">进店逛逛</span></a></li>
+                    <li><a href="#"><i class="num4"></i><span class="txt4">关注店铺</span></a></li>
+                </ul>
+            </div>
+            <div class="hold">
+                <dl>
+                    <dt>服务支持：</dt>
+                    <dd>
+                        <a href="#"><img src="images/yueliang.png">夜间配</a>
+                    </dd>
+                    <dd>
+                        <a href="#"><img src="images/shoutixiang.png">自提</a>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="recomm">
+    <div class="recomm_inner">
+        <ul class="clearfix">
+            <li class="ac"><a href="javascript:;">推荐配件</a></li>
+            <li><a href="javascript:;">人气单品</a></li>
+        </ul>
+        <div class="cont">
+            <div><img src="images/peijian.png"></div>
+            <div class="hot hide" id="hot"><img src="images/danpin.png"></div>
+        </div>
+    </div>
+
+</div>
+

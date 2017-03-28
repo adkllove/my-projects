@@ -1,0 +1,25 @@
+<!--查看购物车子页面-->
+<p class="cart-empty" ng-show="cart.length==0">
+    您的购物车中还没有商品。快去<a href="#/productList">买!买!买!</a>哦!!!
+</p>
+<div class="cart-title clearfix" ng-show="cart.length>0">
+    <div class="product">商品</div>
+    <div class="price">单价</div>
+    <div class="num">数量</div>
+    <div class="money">小计</div>
+    <div class="operate">操作</div>
+</div>
+<ul class="cart-list" ng-show="cart.length>0">
+    <li class="clearfix" ng-repeat="item in cart">
+        <div class="pic"><img ng-src="images/{{item.product.imgsrc}}"></div>
+        <div class="desc">{{item.product.desc}}</div>
+        <div class="pri">{{item.product.price | currency:"￥"}}</div>
+        <div class="number">{{item.number}}</div>
+        <div class="mon">{{item.number * item.product.price | currency:"￥"}}</div>
+        <a href="javascript:;" ng-click="remove(item.product.name)">删除</a>
+    </li>
+</ul>
+<div class="cart-sum" ng-show="cart.length>0">
+    <span class="total">总价：<i>{{money() | currency:"￥"}}</i></span>
+    <span class="num">已选<i>{{count()}}</i>件商品</span>
+</div>
