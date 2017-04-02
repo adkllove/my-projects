@@ -1,0 +1,50 @@
+
+*{ margin:0;padding:0;}
+ul{ list-style:none;}
+input,img,textarea{ border:none;}
+.clearfix:after{ content:""; display:block; clear:both;}
+.clearfix{ *zoom:1;}
+.navbar{margin-bottom: 0;}
+.navbar-default { background-color: #d9edf7; }
+
+.talk{ width:850px; margin:0 auto 30px;}
+.talk .title{ text-align:center; }
+.talk .left{ width:220px; float:left;}
+.talk .left .user-info{ height:140px; padding:5px;background:#e45050; position:relative;}
+.talk .left .user-info h4{ font-weight:bold; color:#8e3535;}
+.talk .left .user-info .photo{ float:left; cursor:pointer;}
+.talk .left .user-info .photo img{width:60px;height:60px;border-radius:50%; }
+.talk .left .user-info .photos{width: 216px;display:none; position:absolute;left: 70px;top: -80px;background: #fff;border-radius: 10px;}
+.talk .left .user-info .photos li{float:left; margin:5px; }
+.talk .left .user-info .photos img{ width:60px;height:60px;border-radius:50%;border:1px solid #fff; cursor:pointer;}
+.talk .left .user-info .photos li:hover img{border-color:red;}
+.talk .left .user-info .user-name{ color:#fff;font-size:18px;}
+.talk .left .user-info .user-name span{ padding-left:5px;}
+.talk .left .user-info .vip img{ padding-left:5px;}
+.talk .left .user-info .search{ position:relative; }
+.talk .left .user-info .search input{ width:190px;height:25px; border-radius:10px; padding-left:30px}
+.talk .left .user-info .search span{ position:absolute;left:5px; top:17px;}
+.talk .left .contacter{ height:435px; background:#363e47;}
+.talk .left .contacter .service{  height:60px; padding:5px;background:#2f363e;}
+.talk .left .contacter .service .pic{float:left;}
+.talk .left .contacter .name{ float:left; color:#fff;font-family:"Microsoft YaHei";padding-left:10px;}
+
+.talk .right{ width:630px; height:575px;float:left; border:1px solid #ccc;}
+.talk .right .title{ height:50px; text-align:left; line-height:50px; border-bottom:1px solid #ccc;}
+.talk .right .title .official{ background:#fc5d60; color:#fff; border-radius:3px;  padding:1px;margin-left:10px; font-size:12px; }
+.talk .right .title .txt{ font-family:"Microsoft YaHei"; font-size:15px;}
+.talk .right #messages{height:390px; border-bottom:1px solid #ccc;overflow: auto;padding:5px;}
+.talk .right .send-box{height:80px;}
+.talk .right .send-box .face{padding: 5px 0 0 10px;  position: relative;}
+.talk .right .send-box .face img{cursor:pointer;}
+.talk .right .send-box .face .pop-face{ position:absolute;left:0;top:-170px; width:300px; background:#fff; display: none;}
+.talk .right .send-box .face .pop-face li{ float:left; margin:3px;}
+.talk .right .send-box #message{ width:560px; height:80px; display:inline-block;margin:10px 0 0 5px;outline: none; overflow:auto;}
+.talk .right .send-box #send{ vertical-align:bottom;}
+
+.talk .right #messages .float-left{float:left;}
+.talk .right #messages img{ border-radius:50%;}
+.talk .right #messages .text{ background: #eee;padding: 5px; margin:0 5px 0; border-radius: 5px;}
+.talk .right #messages .answer{ margin-top:15px;}
+.talk .right #messages .float-right{float:right;}
+.talk .right #messages img.noradius{ border-radius:0;}

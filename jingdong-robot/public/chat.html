@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>京东商场</title>
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/chat.css" rel="stylesheet">
+    <script src="js/jquery-3.1.0.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="../../node_modules/socket.io-client/dist/socket.io.js"></script>
+    <script>
+        $(function () {
+            // 和socket服务器建立连接，获得客户端的socket对象
+            // 连接服务器。这将从被加载的页面向服务器发送连接请求，
+            // 最终在服务器端socketio中触发connection事件
+            var clientSocket = io("http://localhost:3000");
+
+            // 事件委托：监听用户对咨询问题列表的单击
+            $("#messages").on("click","a.qs",function (e) {
+                clientSocket.send($(this).text());
+                e.preventDefault();
+            });
+
+            // 客户端socket监听服务器发过来的消息
+            clientSocket.on("message", function (data) {
+                // 提取消息类型
+                var type = data.type;
+
+                // 根据不同的消息类型分别处理
+                switch (type){
+                    case "qs":  // 说明发过来的是初始咨询问题列表
+                        // 提取内容
+                        var questions = data.qs;
+
+                        // 在咨询窗口显示咨询问题列表
+                        var content = "请选择您要咨询的业务:";
+                        // 动态构建咨询问题列表
+                        var $ul = $("<ul>");
+                        $.each(questions,function (index,q) {
+                            var c = "<li><a href='#' class='qs'>" + q + "</a></li>";
+                            $ul.append(c);
+                        });
+                        var $div=$("<div class='float-left text'>").append(content).append($ul);
+                        var $div1=$("<div class='clearfix'>").append("<img src='images/kefu.jpg' width='30' class='float-left'>").append($div);
+                        $("#messages").append($div1);
+                        break;
+                    case "as":  // 说明是发过来的应答内容
+                        //var as = $("<div>").append(data.as);
+                        var as = $("<div class='answer'>").append("<img src='images/kefu.jpg' width='30' >").append("<span class='text'>"+data.as+"</span>");
+                        // 在咨询窗口客服应答内容
+                        $("#messages").append(as);
+                        break;
+                    case "txt"://说明发送过来的是开场白
+                        var con=$("<div class='answer'>").append("<img src='images/kefu.jpg' width='30' >").append("<span class='text'>"+data.con+"</span>");
+                        $("#messages").append(con);
+                        break;
+                }
+
+                // 窗口自动向下滚动
+                $("#messages").scrollTop($("#messages").prop("scrollHeight"));
+            });
+
+            // 发送咨询内容
+            $("#send").on("click", function () {
+                // 获取用户输入的咨询内容
+                //var content = $("#message").val();
+                var content = $("#message").html();
+                if(content!="") {
+                    // ......
+                    // 敏感词过滤
+                    var re = /死|滚|山寨|水货|fuck|妈的/g;
+
+                    // 构造要发送的信息的数据结构
+                    //var msg = { qs: content };
+                    var content = content.replace(re, "***");
+                    // 将咨询的问题发给服务器端
+                    clientSocket.send(content);
+
+                    // 将咨询内容追加到界面上
+                    var imgsrc=$(".user-info .photo img").attr("src");
+                    $div2 = $("<div class='clearfix ask'>").append("<img src="+imgsrc+" width='30' class='float-right'><span class='text float-right' style='width:auto;max-width:90%;word-break: break-all;'>" + content + "</span>");
+                    $('#messages').append($div2);
+                    // 窗口自动向下滚动
+                    $("#messages").scrollTop($("#messages").prop("scrollHeight"));
+                    //$("#message").val("");   // 清空输入框
+                    $("#message").html("");
+                }
+                else {
+                    alert("不能为空");
+                }
+            });
+
+            // 当按下Enter键时，触发send按钮的click事件
+            $('#message').keydown(function (e) {
+                if (e.keyCode == 13) {  // 如果是按下的Enter键
+                    //模拟点击send按钮，触发上面的 Click 事件
+                    $("#send").click();
+                    e.preventDefault();
+                }
+            });
+
+            //点击头像，更换头像
+            $(".user-info .photo").on("click",function(e){
+                $(".user-info .photos").show();
+                e.stopPropagation();
+            });
+            $(".user-info .photos").find("img").on("click",function(){
+                var newsrc=$(this).attr("src");
+                $(".user-info .photo img").attr("src",newsrc);
+                $(".user-info .photos").hide();
+                $(".ask>img").attr("src",$(this).attr("src"));
+            });
+
+            //发送表情
+            $("#face>img").on("click",function(){
+                $(".pop-face").show();
+            });
+            $(".pop-face").find("li").on("click",function(){
+                $("#message").focus();
+                var imgsrc=$(this).find("img").attr("src");
+                $("#message").append("<img src='"+imgsrc+"' width='50' class='noradius'>");
+                $(".pop-face").hide();
+
+
+            });
+
+        });
+    </script>
+
+</head>
+<body>
+<div class="container">
+    <a href="/"><img src="images/jd.gif" width="100"/></a>
+</div>
+
+<div class="bg-info">
+    <div class="container">
+        <nav class="navbar navbar-default <!--navbar-fixed-top-->" role="navigation">
+        </nav>
+    </div>
+</div>
+
+<!--<div class="container">-->
+    <!--<h3 class="title text-center">京东在线客服系统</h3>-->
+    <!--<div class="panel panel-info">-->
+        <!--<div class="panel-heading">正在和客服通话......</div>-->
+        <!--<div class="panel-body">-->
+            <!--<div class="row">-->
+                <!--<div class="col-md-12">-->
+                    <!--<div id="messages"></div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="row">-->
+                <!--<div class="col-md-11"><input type="text" id="message" class="form-control"/></div>-->
+                <!--<div class="col-md-1">-->
+                    <!--<button class="btn btn-info" id="send">发送</button>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+
+<div class="talk clearfix">
+    <h3 class="title">京东在线客服系统</h3>
+    <div class="left">
+        <div class="user-info">
+            <h4>京东咚咚</h4>
+            <div class="photo"><img src="images/touxiang01.jpg"></div>
+            <ul class="photos">
+                <li><img src="images/touxiang01.jpg"></li>
+                <li><img src="images/touxiang02.jpg"></li>
+                <li><img src="images/touxiang03.jpg"></li>
+                <li><img src="images/touxiang04.jpg"></li>
+                <li><img src="images/touxiang05.jpg"></li>
+                <li><img src="images/touxiang06.jpg"></li>
+            </ul>
+            <div class="user-name"><span>adkllove</span></div>
+            <div class="vip"><img src="images/vip_03.jpg"></div>
+            <div class="search">
+                <input type="text" placeholder="搜索最近联系人">
+                <span><img src="images/search_03.jpg"></span>
+            </div>
+        </div>
+        <div class="contacter">
+            <div class="service">
+                <div class="pic"><img src="images/kefu_03.jpg"></div>
+                <div class="name">京东客服</div>
+            </div>
+        </div>
+    </div>
+    <div class="right">
+        <div class="title">
+            <span class="official">官方</span>
+            <span class="txt">京东客服</span>
+        </div>
+        <div id="messages"></div>
+        <div class="send-box">
+            <div class="face" id="face">
+                <img src="images/biaoqing_03.jpg">
+                <ul class="pop-face">
+                    <li><img src="images/biaoqing.jpg" width="50"></li>
+                    <li><img src="images/biaoqing1.jpg" width="50"></li>
+                    <li><img src="images/biaoqing2.jpg" width="50"></li>
+                    <li><img src="images/biaoqing3.jpg" width="50"></li>
+                    <li><img src="images/biaoqing4.jpg" width="50"></li>
+                    <li><img src="images/biaoqing5.jpg" width="50"></li>
+                    <li><img src="images/biaoqing6.jpg" width="50"></li>
+                    <li><img src="images/biaoqing7.jpg" width="50"></li>
+                    <li><img src="images/biaoqing8.jpg" width="50"></li>
+                    <li><img src="images/biaoqing9.jpg" width="50"></li>
+                    <li><img src="images/biaoqing10.jpg" width="50"></li>
+                    <li><img src="images/biaoqing11.jpg" width="50"></li>
+                    <li><img src="images/biaoqing12.jpg" width="50"></li>
+                    <li><img src="images/biaoqing13.jpg" width="50"></li>
+                    <li><img src="images/biaoqing14.jpg" width="50"></li>
+                </ul>
+            </div>
+            <!--<textarea  id="message"></textarea>-->
+            <div  id="message" contenteditable="true"></div>
+            <button class="btn btn-danger" id="send">发送</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>
